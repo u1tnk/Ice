@@ -428,6 +428,10 @@ function IceBox:storeIfLower( name, value )
 				self._header.modified = os.time()
 			end
 			
+		else
+			self._items[ name ] = value
+			added = true
+			self._header.modified = os.time()
 		end
 		
 	end
