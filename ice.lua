@@ -413,25 +413,25 @@ end
 -- @return The stored value.
 -- @return True if it was added, false if not.
 function IceBox:storeIfLower( name, value )
-	
+        
 	local added = false
 	
 	if name then
-		
+			
 		local currentValue = self:retrieve( name ) or 0
 		
 		if currentValue then
-			
-			if value < currentValue then
+			if currentValue ~= 0 then
+				if value < currentValue then
+					self._items[ name ] = value
+					added = true
+					self._header.modified = os.time()
+				end
+			else
 				self._items[ name ] = value
 				added = true
 				self._header.modified = os.time()
 			end
-			
-		else
-			self._items[ name ] = value
-			added = true
-			self._header.modified = os.time()
 		end
 		
 	end
@@ -441,7 +441,7 @@ function IceBox:storeIfLower( name, value )
 	end
 	
 	return added, value
-	
+        
 end
 
 --- Retrieves a value from the icebox.
