@@ -13,7 +13,7 @@ version = 1.0
 
 -- INCLUDES --
 
-require( "json" )
+local json = require( "json" )
 require( "sqlite3" )
 
 -- LOCAL FUNCTIONS --
