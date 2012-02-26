@@ -508,11 +508,7 @@ end
 -- @return True of the value exists, False otherwise.
 function IceBox:hasValue( name )
 	if name then
-		if self._items[ name ] then
-			return true
-		else
-			return false
-		end
+		return (self._items[ name ] ~= nil)
 	end
 end
 
