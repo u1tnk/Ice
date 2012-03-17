@@ -36,7 +36,7 @@ local function tableToString( t, indent )
     elseif(type(t) == "number") then 
         str = str .. (" "):rep(indent) .. t .. "\n" 
     elseif(type(t) == "boolean") then 
-        if(self == true) then 
+        if(t == true) then 
             str = str .. "true" 
         else 
             str = str .. "false" 
