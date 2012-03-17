@@ -508,15 +508,20 @@ end
 -- @return True of the value exists, False otherwise.
 function IceBox:hasValue( name )
 	if name then
-		return (self._items[ name ] ~= nil)
+		if self._items[ name ] ~= nil then
+			return true
+		else
+			return false
+		end
 	end
+
 end
 
 --- Removes a value from the icebox.
 -- @param name The name of the value to remove.
 function IceBox:remove( name )
 	if name then
-		if self._items[ name ] then
+		if self:hasValue( name ) then
 			self._items[ name ] = nil
 			self._header.modified = os.time()
 		end
