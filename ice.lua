@@ -91,8 +91,17 @@ local saveDatabase = function( database, items, header )
 		local query = [[CREATE TABLE IF NOT EXISTS icebox (id INTEGER PRIMARY KEY, value, header);]]
 	
 		database:exec( query )
+
+    -- coronaでdecodeしたObjectをそのままencodeするとencodeで反映されないバグがあるため
+    -- 対策の為コピーする
+    local temp_items = {}
+    if items then
+      for key, value in pairs(items) do
+        temp_items[key] = value
+      end
+    end
 		
-		local encodedItems = json.encode( items or {} )
+		local encodedItems = json.encode( temp_items )
 
 		if header then
 			header.saved = os.time()
